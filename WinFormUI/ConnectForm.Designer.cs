@@ -36,7 +36,7 @@
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.butConnect = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.butPasswordVisible = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtDataSource
@@ -93,12 +93,16 @@
             // 
             // butConnect
             // 
+            this.butConnect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
+            this.butConnect.FlatAppearance.BorderSize = 0;
+            this.butConnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.butConnect.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.butConnect.Location = new System.Drawing.Point(16, 366);
             this.butConnect.Name = "butConnect";
             this.butConnect.Size = new System.Drawing.Size(403, 68);
             this.butConnect.TabIndex = 6;
             this.butConnect.Text = "Connect";
-            this.butConnect.UseVisualStyleBackColor = true;
+            this.butConnect.UseVisualStyleBackColor = false;
             // 
             // checkBox1
             // 
@@ -113,22 +117,24 @@
             this.checkBox1.Text = "As SYSDBA (automatic)";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // butPasswordVisible
             // 
-            this.button1.BackgroundImage = global::WinFormUI.Properties.Resources.MakePasswordVisible;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.Location = new System.Drawing.Point(385, 194);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(33, 31);
-            this.button1.TabIndex = 8;
-            this.button1.UseVisualStyleBackColor = true;
+            this.butPasswordVisible.BackgroundImage = global::WinFormUI.Properties.Resources.PasswordVisible;
+            this.butPasswordVisible.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.butPasswordVisible.FlatAppearance.BorderSize = 0;
+            this.butPasswordVisible.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.butPasswordVisible.Location = new System.Drawing.Point(373, 184);
+            this.butPasswordVisible.Name = "butPasswordVisible";
+            this.butPasswordVisible.Size = new System.Drawing.Size(45, 45);
+            this.butPasswordVisible.TabIndex = 8;
+            this.butPasswordVisible.UseVisualStyleBackColor = true;
             // 
             // ConnectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(434, 446);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.butPasswordVisible);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.butConnect);
             this.Controls.Add(this.label3);
@@ -157,7 +163,7 @@
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Button butConnect;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button butPasswordVisible;
     }
 }
 

@@ -130,6 +130,7 @@
             this.butPasswordVisible.Size = new System.Drawing.Size(45, 45);
             this.butPasswordVisible.TabIndex = 8;
             this.butPasswordVisible.UseVisualStyleBackColor = true;
+            this.butPasswordVisible.Click += new System.EventHandler(this.butPasswordVisible_Click);
             // 
             // ConnectForm
             // 

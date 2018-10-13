@@ -22,5 +22,13 @@ namespace WinFormUI
             this.Hide();
             Program.mainForm.Show();
         }
+
+        private void butPasswordVisible_Click(object sender, EventArgs e)
+        {
+            if (txtPassword.PasswordChar == '⦁')
+                txtPassword.PasswordChar = '\0';
+            else
+                txtPassword.PasswordChar = '⦁';
+        }
     }
 }

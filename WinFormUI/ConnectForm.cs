@@ -18,9 +18,9 @@ namespace WinFormUI
 
         private void butConnect_Click(object sender, EventArgs e)
         {
-            MainForm _mainForm = new MainForm();
+            Program.mainForm = new MainForm();
             this.Hide();
-            _mainForm.Show();
+            Program.mainForm.Show();
         }
     }
 }

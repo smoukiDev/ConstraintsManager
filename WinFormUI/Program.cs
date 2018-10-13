@@ -7,6 +7,9 @@ namespace WinFormUI
 {
     static class Program
     {
+        static internal ConnectForm connectForm = null;
+        static internal MainForm mainForm = null;
+        static internal ReportForm reportForm = null;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -15,7 +18,7 @@ namespace WinFormUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ConnectForm());
+            Application.Run(connectForm = new ConnectForm());
         }
     }
 }

@@ -21,5 +21,11 @@ namespace WinFormUI
 
             this.rvConstraints.RefreshReport();
         }
+
+        private void ReportForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Hide();
+            Program.mainForm.Close();
+        }
     }
 }

@@ -64,6 +64,7 @@
             this.tbSearch.Name = "tbSearch";
             this.tbSearch.Size = new System.Drawing.Size(504, 29);
             this.tbSearch.TabIndex = 4;
+            this.tbSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // dgvContraints
             // 
@@ -102,6 +103,7 @@
             this.butBuildReport.TabIndex = 10;
             this.butBuildReport.Text = "Report";
             this.butBuildReport.UseVisualStyleBackColor = false;
+            this.butBuildReport.Click += new System.EventHandler(this.butBuildReport_Click);
             // 
             // rbByConstraint
             // 
@@ -227,6 +229,7 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Oracle Constraints Manager";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvContraints)).EndInit();
             this.panFilter.ResumeLayout(false);
             this.panFilter.PerformLayout();

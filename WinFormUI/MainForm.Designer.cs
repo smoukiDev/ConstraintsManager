@@ -208,6 +208,7 @@
             this.butCleanSearch.Size = new System.Drawing.Size(45, 45);
             this.butCleanSearch.TabIndex = 5;
             this.butCleanSearch.UseVisualStyleBackColor = true;
+            this.butCleanSearch.Click += new System.EventHandler(this.butCleanSearch_Click);
             // 
             // MainForm
             // 

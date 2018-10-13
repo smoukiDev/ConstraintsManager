@@ -28,5 +28,10 @@ namespace WinFormUI
             this.Hide();
             Program.reportForm.Show();
         }
+
+        private void butCleanSearch_Click(object sender, EventArgs e)
+        {
+            tbSearch.Clear();
+        }
     }
 }

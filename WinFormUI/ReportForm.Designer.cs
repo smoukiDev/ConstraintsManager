@@ -28,11 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.rvConstraints = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.SuspendLayout();
+            // 
+            // rvConstraints
+            // 
+            this.rvConstraints.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rvConstraints.Location = new System.Drawing.Point(0, 0);
+            this.rvConstraints.Name = "rvConstraints";
+            this.rvConstraints.Size = new System.Drawing.Size(521, 482);
+            this.rvConstraints.TabIndex = 0;
+            // 
+            // ReportForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "ReportForm";
+            this.ClientSize = new System.Drawing.Size(521, 482);
+            this.Controls.Add(this.rvConstraints);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Name = "ReportForm";
+            this.Text = "Report Manager";
+            this.Load += new System.EventHandler(this.ReportForm_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private Microsoft.Reporting.WinForms.ReportViewer rvConstraints;
     }
 }

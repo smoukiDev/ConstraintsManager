@@ -15,5 +15,11 @@ namespace WinFormUI
         {
             InitializeComponent();
         }
+
+        private void ReportForm_Load(object sender, EventArgs e)
+        {
+
+            this.rvConstraints.RefreshReport();
+        }
     }
 }

@@ -225,6 +225,7 @@
             this.Margin = new System.Windows.Forms.Padding(6);
             this.MinimumSize = new System.Drawing.Size(1024, 768);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Oracle Constraints Manager";
             ((System.ComponentModel.ISupportInitialize)(this.dgvContraints)).EndInit();
             this.panFilter.ResumeLayout(false);

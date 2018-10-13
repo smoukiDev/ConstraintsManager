@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConnectForm));
             this.txtDataSource = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -103,6 +104,7 @@
             this.butConnect.TabIndex = 6;
             this.butConnect.Text = "Connect";
             this.butConnect.UseVisualStyleBackColor = false;
+            this.butConnect.Click += new System.EventHandler(this.butConnect_Click);
             // 
             // checkBox1
             // 
@@ -119,7 +121,7 @@
             // 
             // butPasswordVisible
             // 
-            this.butPasswordVisible.BackgroundImage = global::WinFormUI.Properties.Resources.PasswordVisible;
+            this.butPasswordVisible.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("butPasswordVisible.BackgroundImage")));
             this.butPasswordVisible.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.butPasswordVisible.FlatAppearance.BorderSize = 0;
             this.butPasswordVisible.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

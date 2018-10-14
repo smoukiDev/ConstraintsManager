@@ -25,7 +25,7 @@ namespace WinFormUI
         private void ReportForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.Hide();
-            Program.mainForm.Close();
+            Program.mainForm.Show();
         }
     }
 }

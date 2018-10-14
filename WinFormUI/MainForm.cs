@@ -77,6 +77,7 @@ namespace WinFormUI
 
         private void butSearch_Click(object sender, EventArgs e)
         {
+            tbSearch.Text = tbSearch.Text.Replace(' ', '_');
             if(rbByOwner.Checked ==true)
             {
                 GetConstraintsByOwner(tbSearch.Text);
@@ -145,6 +146,49 @@ namespace WinFormUI
             {
                 string lucidMessage = "Can't access data on this server!";
                 MessageBox.Show(lucidMessage + Environment.NewLine + ex.Message, "Failure");
+            }
+        }
+
+        private void butDropConstraint_Click(object sender, EventArgs e)
+        {
+            string targetOwner = dgvContraints.SelectedRows[0].Cells[0].Value.ToString();
+            string targetTable = dgvContraints.SelectedRows[0].Cells[1].Value.ToString();
+            string targetContraint = dgvContraints.SelectedRows[0].Cells[2].Value.ToString();
+            MessageBox.Show(targetTable + Environment.NewLine + targetContraint);
+            DialogResult SaveOrNot = MessageBox.Show("Are you sure, you want to drop this constraint?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (SaveOrNot == DialogResult.Yes)
+            {
+                DropConstraint(targetOwner,targetTable, targetContraint);
+            }
+            if (SaveOrNot == DialogResult.No)
+            {
+                MessageBox.Show("Dropping of constraint was discarded.", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
+        }
+
+        private void DropConstraint(string owner, string table, string constraintName)
+        {
+            string sqlExpression = $"ALTER TABLE {owner}.{table} DROP CONSTRAINT {constraintName}";
+
+            using (OracleConnection connection = new OracleConnection(connectionString))
+            {
+                connection.Open();
+                using (OracleCommand command = new OracleCommand(sqlExpression, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Constraint was successfully dropped.", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception EX)
+                    {
+                        MessageBox.Show(EX.Message);
+                    }
+                }
+                    
+
+
             }
         }
     }

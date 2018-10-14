@@ -94,6 +94,7 @@
             this.butDropConstraint.TabIndex = 9;
             this.butDropConstraint.Text = "Drop";
             this.butDropConstraint.UseVisualStyleBackColor = false;
+            this.butDropConstraint.Click += new System.EventHandler(this.butDropConstraint_Click);
             // 
             // butBuildReport
             // 
@@ -134,6 +135,7 @@
             // rbByOwner
             // 
             this.rbByOwner.AutoSize = true;
+            this.rbByOwner.Checked = true;
             this.rbByOwner.Location = new System.Drawing.Point(13, 61);
             this.rbByOwner.Name = "rbByOwner";
             this.rbByOwner.Size = new System.Drawing.Size(111, 28);

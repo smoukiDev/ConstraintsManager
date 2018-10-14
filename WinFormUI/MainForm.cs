@@ -77,10 +77,14 @@ namespace WinFormUI
         }
 
         private void MainForm_Load(object sender, EventArgs e)
-        {
-            
+        {            
             GetAllConstraints();
             Program.connectForm.Hide();        
+        }
+
+        private void butRefresh_Click(object sender, EventArgs e)
+        {
+            GetAllConstraints();
         }
     }
 }

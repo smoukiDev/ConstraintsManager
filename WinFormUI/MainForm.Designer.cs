@@ -186,6 +186,7 @@
             this.butRefresh.Size = new System.Drawing.Size(45, 45);
             this.butRefresh.TabIndex = 7;
             this.butRefresh.UseVisualStyleBackColor = true;
+            this.butRefresh.Click += new System.EventHandler(this.butRefresh_Click);
             // 
             // butSearch
             // 

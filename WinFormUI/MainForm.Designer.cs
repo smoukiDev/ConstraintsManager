@@ -42,15 +42,18 @@
             this.butRefresh = new System.Windows.Forms.Button();
             this.butSearch = new System.Windows.Forms.Button();
             this.butCleanSearch = new System.Windows.Forms.Button();
+            this.panDataGrid = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvContraints)).BeginInit();
             this.panFilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbFilter)).BeginInit();
+            this.panDataGrid.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblSearch
             // 
+            this.lblSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSearch.AutoSize = true;
-            this.lblSearch.Location = new System.Drawing.Point(245, 31);
+            this.lblSearch.Location = new System.Drawing.Point(534, 32);
             this.lblSearch.Name = "lblSearch";
             this.lblSearch.Size = new System.Drawing.Size(75, 24);
             this.lblSearch.TabIndex = 0;
@@ -58,11 +61,10 @@
             // 
             // tbSearch
             // 
-            this.tbSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbSearch.Location = new System.Drawing.Point(249, 73);
+            this.tbSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbSearch.Location = new System.Drawing.Point(538, 73);
             this.tbSearch.Name = "tbSearch";
-            this.tbSearch.Size = new System.Drawing.Size(504, 29);
+            this.tbSearch.Size = new System.Drawing.Size(444, 29);
             this.tbSearch.TabIndex = 4;
             this.tbSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -71,20 +73,22 @@
             this.dgvContraints.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvContraints.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvContraints.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvContraints.Location = new System.Drawing.Point(12, 228);
+            this.dgvContraints.Location = new System.Drawing.Point(13, 13);
+            this.dgvContraints.MultiSelect = false;
             this.dgvContraints.Name = "dgvContraints";
-            this.dgvContraints.Size = new System.Drawing.Size(984, 489);
+            this.dgvContraints.Size = new System.Drawing.Size(957, 399);
             this.dgvContraints.TabIndex = 8;
             // 
             // butDropConstraint
             // 
-            this.butDropConstraint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.butDropConstraint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.butDropConstraint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
             this.butDropConstraint.FlatAppearance.BorderSize = 0;
             this.butDropConstraint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.butDropConstraint.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.butDropConstraint.Location = new System.Drawing.Point(781, 144);
+            this.butDropConstraint.Location = new System.Drawing.Point(755, 423);
             this.butDropConstraint.Name = "butDropConstraint";
             this.butDropConstraint.Size = new System.Drawing.Size(215, 55);
             this.butDropConstraint.TabIndex = 9;
@@ -93,11 +97,11 @@
             // 
             // butBuildReport
             // 
-            this.butBuildReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.butBuildReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.butBuildReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(214)))), ((int)(((byte)(119)))));
             this.butBuildReport.FlatAppearance.BorderSize = 0;
             this.butBuildReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.butBuildReport.Location = new System.Drawing.Point(781, 73);
+            this.butBuildReport.Location = new System.Drawing.Point(526, 423);
             this.butBuildReport.Name = "butBuildReport";
             this.butBuildReport.Size = new System.Drawing.Size(215, 56);
             this.butBuildReport.TabIndex = 10;
@@ -177,7 +181,7 @@
             this.butRefresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.butRefresh.FlatAppearance.BorderSize = 0;
             this.butRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.butRefresh.Location = new System.Drawing.Point(657, 20);
+            this.butRefresh.Location = new System.Drawing.Point(886, 22);
             this.butRefresh.Name = "butRefresh";
             this.butRefresh.Size = new System.Drawing.Size(45, 45);
             this.butRefresh.TabIndex = 7;
@@ -190,7 +194,7 @@
             this.butSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.butSearch.FlatAppearance.BorderSize = 0;
             this.butSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.butSearch.Location = new System.Drawing.Point(606, 21);
+            this.butSearch.Location = new System.Drawing.Point(835, 21);
             this.butSearch.Name = "butSearch";
             this.butSearch.Size = new System.Drawing.Size(45, 45);
             this.butSearch.TabIndex = 6;
@@ -203,22 +207,34 @@
             this.butCleanSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.butCleanSearch.FlatAppearance.BorderSize = 0;
             this.butCleanSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.butCleanSearch.Location = new System.Drawing.Point(708, 20);
+            this.butCleanSearch.Location = new System.Drawing.Point(937, 22);
             this.butCleanSearch.Name = "butCleanSearch";
             this.butCleanSearch.Size = new System.Drawing.Size(45, 45);
             this.butCleanSearch.TabIndex = 5;
             this.butCleanSearch.UseVisualStyleBackColor = true;
             this.butCleanSearch.Click += new System.EventHandler(this.butCleanSearch_Click);
             // 
+            // panDataGrid
+            // 
+            this.panDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panDataGrid.BackColor = System.Drawing.Color.Gainsboro;
+            this.panDataGrid.Controls.Add(this.dgvContraints);
+            this.panDataGrid.Controls.Add(this.butDropConstraint);
+            this.panDataGrid.Controls.Add(this.butBuildReport);
+            this.panDataGrid.Location = new System.Drawing.Point(12, 228);
+            this.panDataGrid.Name = "panDataGrid";
+            this.panDataGrid.Size = new System.Drawing.Size(984, 489);
+            this.panDataGrid.TabIndex = 12;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.panDataGrid);
             this.Controls.Add(this.panFilter);
-            this.Controls.Add(this.butBuildReport);
-            this.Controls.Add(this.butDropConstraint);
-            this.Controls.Add(this.dgvContraints);
             this.Controls.Add(this.butRefresh);
             this.Controls.Add(this.butSearch);
             this.Controls.Add(this.butCleanSearch);
@@ -231,10 +247,12 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Oracle Constraints Manager";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvContraints)).EndInit();
             this.panFilter.ResumeLayout(false);
             this.panFilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbFilter)).EndInit();
+            this.panDataGrid.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -256,5 +274,6 @@
         private System.Windows.Forms.Label lblFilter;
         private System.Windows.Forms.PictureBox pbFilter;
         private System.Windows.Forms.Panel panFilter;
+        private System.Windows.Forms.Panel panDataGrid;
     }
 }

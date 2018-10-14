@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -12,10 +13,11 @@ namespace WinFormUI
 {
     public partial class MainForm : Form
     {
-        string connectionString = @"DATA SOURCE = PDBORTW; DBA PRIVILEGE = SYSDBA; PASSWORD = ultraLife31; USER ID = SYS";
-        public MainForm()
+        string connectionString = null;
+        public MainForm(string dataSource,string userId, string password)
         {
             InitializeComponent();
+            connectionString = $"DATA SOURCE = {dataSource}; DBA PRIVILEGE = SYSDBA; PASSWORD = {password}; USER ID = {userId}";
             SetDataGridViewStyle();
             
         }

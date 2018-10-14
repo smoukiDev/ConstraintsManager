@@ -77,7 +77,7 @@ namespace WinFormUI
 
         private void butSearch_Click(object sender, EventArgs e)
         {
-            tbSearch.Text = tbSearch.Text.Replace(' ', '_');
+            tbSearch.Text = tbSearch.Text.ToUpper().Replace(' ', '_');
             if(rbByOwner.Checked ==true)
             {
                 GetConstraintsByOwner(tbSearch.Text);

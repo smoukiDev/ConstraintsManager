@@ -18,9 +18,8 @@ namespace WinFormUI
 
         private void butConnect_Click(object sender, EventArgs e)
         {
-            
+            tsLabelLoading.Visible = true;
             Program.mainForm = new MainForm();
-            this.Hide();
             Program.mainForm.Show();
         }
 
@@ -32,9 +31,5 @@ namespace WinFormUI
                 txtPassword.PasswordChar = '⦁';
         }
 
-        private void ConnectForm_Load(object sender, EventArgs e)
-        {
-            
-        }
     }
 }

@@ -38,6 +38,9 @@
             this.butConnect = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.butPasswordVisible = new System.Windows.Forms.Button();
+            this.tsStatus = new System.Windows.Forms.ToolStrip();
+            this.tsLabelLoading = new System.Windows.Forms.ToolStripLabel();
+            this.tsStatus.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtDataSource
@@ -132,11 +135,31 @@
             this.butPasswordVisible.UseVisualStyleBackColor = true;
             this.butPasswordVisible.Click += new System.EventHandler(this.butPasswordVisible_Click);
             // 
+            // tsStatus
+            // 
+            this.tsStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tsStatus.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsLabelLoading});
+            this.tsStatus.Location = new System.Drawing.Point(0, 450);
+            this.tsStatus.Name = "tsStatus";
+            this.tsStatus.Size = new System.Drawing.Size(434, 25);
+            this.tsStatus.TabIndex = 10;
+            this.tsStatus.Text = "toolStrip1";
+            // 
+            // tsLabelLoading
+            // 
+            this.tsLabelLoading.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tsLabelLoading.Name = "tsLabelLoading";
+            this.tsLabelLoading.Size = new System.Drawing.Size(75, 22);
+            this.tsLabelLoading.Text = "Loading...";
+            this.tsLabelLoading.Visible = false;
+            // 
             // ConnectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(434, 446);
+            this.ClientSize = new System.Drawing.Size(434, 475);
+            this.Controls.Add(this.tsStatus);
             this.Controls.Add(this.butPasswordVisible);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.butConnect);
@@ -152,7 +175,8 @@
             this.Name = "ConnectForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Connect DB as SYSDBA";
-            this.Load += new System.EventHandler(this.ConnectForm_Load);
+            this.tsStatus.ResumeLayout(false);
+            this.tsStatus.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -169,6 +193,8 @@
         private System.Windows.Forms.Button butConnect;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button butPasswordVisible;
+        private System.Windows.Forms.ToolStrip tsStatus;
+        private System.Windows.Forms.ToolStripLabel tsLabelLoading;
     }
 }
 

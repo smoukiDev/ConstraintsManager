@@ -12,6 +12,7 @@ namespace WinFormUI
 {
     public partial class MainForm : Form
     {
+        string connectionString = @"DATA SOURCE = PDBORTW; DBA PRIVILEGE = SYSDBA; PASSWORD = ultraLife31; USER ID = SYS";
         public MainForm()
         {
             InitializeComponent();
@@ -20,22 +21,9 @@ namespace WinFormUI
         }
 
         private void GetAllConstraints()
-        {
-            // DATA SOURCE = PDBORTW; DBA PRIVILEGE = SYSDBA; PASSWORD = ultraLife31; USER ID = SYS
-            string connectionString = @"DATA SOURCE = PDBORTW; DBA PRIVILEGE = SYSDBA; PASSWORD = ultraLife31; USER ID = SYS";
+        {          
             string sql = "SELECT OWNER, TABLE_NAME, CONSTRAINT_NAME, CONSTRAINT_TYPE, STATUS FROM ALL_CONSTRAINTS";
-            using (OracleConnection connection = new OracleConnection(connectionString))
-            {
-                connection.Open();
-                // Создаем объект DataAdapter
-                OracleDataAdapter adapter = new OracleDataAdapter(sql, connection);
-                // Создаем объект Dataset
-                DataSet ds = new DataSet();
-                // Заполняем Dataset
-                adapter.Fill(ds);
-                // Отображаем данные
-                dgvContraints.DataSource = ds.Tables[0];
-            }
+            SelectConstraints(connectionString, sql);
         }
 
         private void SetDataGridViewStyle()
@@ -85,6 +73,79 @@ namespace WinFormUI
         private void butRefresh_Click(object sender, EventArgs e)
         {
             GetAllConstraints();
+        }
+
+        private void butSearch_Click(object sender, EventArgs e)
+        {
+            if(rbByOwner.Checked ==true)
+            {
+                GetConstraintsByOwner(tbSearch.Text);
+            }
+
+
+            if (rbByTable.Checked == true)
+            {
+                GetConstraintsByTable(tbSearch.Text);
+            }
+
+
+            if (rbByConstraint.Checked == true)
+            {
+                GetConstraintsByName(tbSearch.Text);
+            }
+        }
+
+        private void GetConstraintsByOwner(string searchRequest)
+        {
+            string sql = $"SELECT OWNER, TABLE_NAME, CONSTRAINT_NAME, CONSTRAINT_TYPE, STATUS FROM ALL_CONSTRAINTS "
+                       + $"WHERE OWNER='{searchRequest}'";
+            SelectConstraints(connectionString, sql);
+
+        }
+        private void GetConstraintsByTable(string searchRequest)
+        {
+            string sql = $"SELECT OWNER, TABLE_NAME, CONSTRAINT_NAME, CONSTRAINT_TYPE, STATUS FROM ALL_CONSTRAINTS "
+                       + $"WHERE TABLE_NAME='{searchRequest}'";
+            SelectConstraints(connectionString, sql);
+
+        }
+        private void GetConstraintsByName(string searchRequest)
+        {
+            string sql = $"SELECT OWNER, TABLE_NAME, CONSTRAINT_NAME, CONSTRAINT_TYPE, STATUS FROM ALL_CONSTRAINTS "
+                       + $"WHERE CONSTRAINT_NAME='{searchRequest}'";
+            SelectConstraints(connectionString, sql);
+        }
+
+        private void SelectConstraints(string connectionString, string sql)
+        {
+            try
+            {
+                using (OracleConnection connection = new OracleConnection(connectionString))
+                {
+                    connection.Open();
+                    using (OracleDataAdapter adapter = new OracleDataAdapter(sql, connection))
+                    {
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dgvContraints.DataSource = ds.Tables[0];
+                    }
+
+                }
+            }
+            catch (ArgumentNullException)
+            {
+                MessageBox.Show("Server is probably shut down. Please try again.", "Failure");
+            }
+            catch (ArgumentException ex)
+            {
+                string lucidMessage = "Incorrect credentials!";
+                MessageBox.Show(lucidMessage + Environment.NewLine + ex.Message + ".", "Failure");
+            }
+            catch (OracleException ex)
+            {
+                string lucidMessage = "Can't access data on this server!";
+                MessageBox.Show(lucidMessage + Environment.NewLine + ex.Message, "Failure");
+            }
         }
     }
 }

@@ -21,11 +21,11 @@ namespace WinFormUI
         private void butConnect_Click(object sender, EventArgs e)
         {
             tsLabelLoading.Visible = true;
-            Program.mainForm = new MainForm(txtDataSource.Text, txtUser.Text, txtPassword.Text);           
-            Program.mainForm.Show();
+            //Pass on MainForm Logic
             txtUser.Clear();
             txtDataSource.Clear();
             txtPassword.Clear();
+            tsLabelLoading.Visible = false;
         }
 
         private void butPasswordVisible_Click(object sender, EventArgs e)

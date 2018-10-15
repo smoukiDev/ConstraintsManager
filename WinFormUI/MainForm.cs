@@ -8,25 +8,79 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Oracle.ManagedDataAccess.Client;
+using System.Diagnostics;
 
 namespace WinFormUI
 {
     public partial class MainForm : Form
     {
         string connectionString = null;
-        public MainForm(string dataSource,string userId, string password)
+        public MainForm()
         {
             InitializeComponent();
-            connectionString = $"DATA SOURCE = {dataSource}; DBA PRIVILEGE = SYSDBA; PASSWORD = {password}; USER ID = {userId}";
+            connectionString = Properties.Settings.Default.OracleSysUser;
             SetDataGridViewStyle();
             GetAllConstraints();
 
         }
 
-        private void GetAllConstraints()
-        {          
-            string sql = "SELECT OWNER, TABLE_NAME, CONSTRAINT_NAME, CONSTRAINT_TYPE, STATUS FROM ALL_CONSTRAINTS";
-            SelectConstraints(connectionString, sql);
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+        }
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+        }
+
+        private void butCleanSearch_Click(object sender, EventArgs e)
+        {
+            tbSearch.Clear();
+        }
+        private void butRefresh_Click(object sender, EventArgs e)
+        {
+            GetAllConstraints();
+        }
+        private void butSearch_Click(object sender, EventArgs e)
+        {
+            tbSearch.Text = tbSearch.Text.ToUpper().Replace(' ', '_');
+            if(rbByOwner.Checked ==true)
+            {
+                GetConstraintsByOwner(tbSearch.Text);
+            }
+
+
+            if (rbByTable.Checked == true)
+            {
+                GetConstraintsByTable(tbSearch.Text);
+            }
+
+
+            if (rbByConstraint.Checked == true)
+            {
+                GetConstraintsByName(tbSearch.Text);
+            }
+        }
+        private void butDropConstraint_Click(object sender, EventArgs e)
+        {
+            string targetOwner = dgvContraints.SelectedRows[0].Cells[0].Value.ToString();
+            string targetTable = dgvContraints.SelectedRows[0].Cells[1].Value.ToString();
+            string targetContraint = dgvContraints.SelectedRows[0].Cells[2].Value.ToString();
+            MessageBox.Show(targetTable + Environment.NewLine + targetContraint);
+            DialogResult SaveOrNot = MessageBox.Show("Are you sure, you want to drop this constraint?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (SaveOrNot == DialogResult.Yes)
+            {
+                DropConstraint(targetOwner, targetTable, targetContraint);
+            }
+            if (SaveOrNot == DialogResult.No)
+            {
+                MessageBox.Show("Dropping of constraint was discarded.", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+        }
+        private void butBuildReport_Click(object sender, EventArgs e)
+        {
+            Program.reportForm = new ReportForm();
+            this.Hide();
+            Program.reportForm.Show();
         }
 
         private void SetDataGridViewStyle()
@@ -49,56 +103,26 @@ namespace WinFormUI
 
         }
 
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void SelectConstraints(string connectionString, string sql)
         {
-            this.Hide();
-            Program.connectForm.Close();
-        }
 
-        private void butBuildReport_Click(object sender, EventArgs e)
+                using (OracleConnection connection = new OracleConnection(connectionString))
+                {
+                    connection.Open();
+                    using (OracleDataAdapter adapter = new OracleDataAdapter(sql, connection))
+                    {
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dgvContraints.DataSource = ds.Tables[0];
+                    }
+
+                }
+        }
+        private void GetAllConstraints()
         {
-            Program.reportForm = new ReportForm();
-            this.Hide();
-            Program.reportForm.Show();
+            string sql = "SELECT OWNER, TABLE_NAME, CONSTRAINT_NAME, CONSTRAINT_TYPE, STATUS FROM ALL_CONSTRAINTS";
+            SelectConstraints(connectionString, sql);
         }
-
-        private void butCleanSearch_Click(object sender, EventArgs e)
-        {
-            tbSearch.Clear();
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {            
-            
-            Program.connectForm.Hide();        
-        }
-
-        private void butRefresh_Click(object sender, EventArgs e)
-        {
-            GetAllConstraints();
-        }
-
-        private void butSearch_Click(object sender, EventArgs e)
-        {
-            tbSearch.Text = tbSearch.Text.ToUpper().Replace(' ', '_');
-            if(rbByOwner.Checked ==true)
-            {
-                GetConstraintsByOwner(tbSearch.Text);
-            }
-
-
-            if (rbByTable.Checked == true)
-            {
-                GetConstraintsByTable(tbSearch.Text);
-            }
-
-
-            if (rbByConstraint.Checked == true)
-            {
-                GetConstraintsByName(tbSearch.Text);
-            }
-        }
-
         private void GetConstraintsByOwner(string searchRequest)
         {
             string sql = $"SELECT OWNER, TABLE_NAME, CONSTRAINT_NAME, CONSTRAINT_TYPE, STATUS FROM ALL_CONSTRAINTS "
@@ -119,57 +143,6 @@ namespace WinFormUI
                        + $"WHERE CONSTRAINT_NAME='{searchRequest}'";
             SelectConstraints(connectionString, sql);
         }
-
-        private void SelectConstraints(string connectionString, string sql)
-        {
-            try
-            {
-                using (OracleConnection connection = new OracleConnection(connectionString))
-                {
-                    connection.Open();
-                    using (OracleDataAdapter adapter = new OracleDataAdapter(sql, connection))
-                    {
-                        DataSet ds = new DataSet();
-                        adapter.Fill(ds);
-                        dgvContraints.DataSource = ds.Tables[0];
-                    }
-
-                }
-            }
-            catch (ArgumentNullException)
-            {
-                MessageBox.Show("Server is probably shut down. Please try again.", "Failure");
-            }
-            catch (ArgumentException ex)
-            {
-                string lucidMessage = "Incorrect credentials!";
-                MessageBox.Show(lucidMessage + Environment.NewLine + ex.Message + ".", "Failure");
-            }
-            catch (OracleException ex)
-            {
-                string lucidMessage = "Can't access data on this server!";
-                MessageBox.Show(lucidMessage + Environment.NewLine + ex.Message, "Failure");
-            }
-        }
-
-        private void butDropConstraint_Click(object sender, EventArgs e)
-        {
-            string targetOwner = dgvContraints.SelectedRows[0].Cells[0].Value.ToString();
-            string targetTable = dgvContraints.SelectedRows[0].Cells[1].Value.ToString();
-            string targetContraint = dgvContraints.SelectedRows[0].Cells[2].Value.ToString();
-            MessageBox.Show(targetTable + Environment.NewLine + targetContraint);
-            DialogResult SaveOrNot = MessageBox.Show("Are you sure, you want to drop this constraint?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (SaveOrNot == DialogResult.Yes)
-            {
-                DropConstraint(targetOwner,targetTable, targetContraint);
-            }
-            if (SaveOrNot == DialogResult.No)
-            {
-                MessageBox.Show("Dropping of constraint was discarded.", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            
-        }
-
         private void DropConstraint(string owner, string table, string constraintName)
         {
             string sqlExpression = $"ALTER TABLE {owner}.{table} DROP CONSTRAINT {constraintName}";

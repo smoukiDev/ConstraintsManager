@@ -7,7 +7,8 @@ namespace WinFormUI
 {
     static class Program
     {
-        static internal ConnectForm connectForm = null;
+        // ConnectForm disabled
+        // static internal ConnectForm connectForm = null;
         static internal MainForm mainForm = null;
         static internal ReportForm reportForm = null;
         /// <summary>
@@ -18,7 +19,7 @@ namespace WinFormUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(connectForm = new ConnectForm());
+            Application.Run(mainForm = new MainForm());
         }
     }
 }

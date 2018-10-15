@@ -56,6 +56,11 @@
     <Compile Include="ConnectForm.Designer.cs">
       <DependentUpon>ConnectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="dsOracleSysUser.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsOracleSysUser.xsd</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +95,17 @@
       <DependentUpon>ReportForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
+    <None Include="dsOracleSysUser.xsc">
+      <DependentUpon>dsOracleSysUser.xsd</DependentUpon>
+    </None>
+    <None Include="dsOracleSysUser.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsOracleSysUser.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dsOracleSysUser.xss">
+      <DependentUpon>dsOracleSysUser.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

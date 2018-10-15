@@ -131,7 +131,7 @@ namespace WinFormUI
             }
             catch(Exception ex)
             {
-                string lucidMessage = "Dropping of constraint was aborted." + Environment.NewLine + Environment.NewLine;
+                string lucidMessage = "Сan't access data or database. You can try to connect again." + Environment.NewLine + Environment.NewLine;
                 MessageBox.Show(lucidMessage + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
                 

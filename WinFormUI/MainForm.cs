@@ -19,7 +19,8 @@ namespace WinFormUI
             InitializeComponent();
             connectionString = $"DATA SOURCE = {dataSource}; DBA PRIVILEGE = SYSDBA; PASSWORD = {password}; USER ID = {userId}";
             SetDataGridViewStyle();
-            
+            GetAllConstraints();
+
         }
 
         private void GetAllConstraints()
@@ -68,7 +69,7 @@ namespace WinFormUI
 
         private void MainForm_Load(object sender, EventArgs e)
         {            
-            GetAllConstraints();
+            
             Program.connectForm.Hide();        
         }
 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.lblSearch = new System.Windows.Forms.Label();
             this.tbSearch = new System.Windows.Forms.TextBox();
             this.dgvContraints = new System.Windows.Forms.DataGridView();
@@ -38,15 +39,15 @@
             this.rbByOwner = new System.Windows.Forms.RadioButton();
             this.lblFilter = new System.Windows.Forms.Label();
             this.panFilter = new System.Windows.Forms.Panel();
+            this.panDataGrid = new System.Windows.Forms.Panel();
             this.pbFilter = new System.Windows.Forms.PictureBox();
             this.butRefresh = new System.Windows.Forms.Button();
             this.butSearch = new System.Windows.Forms.Button();
             this.butCleanSearch = new System.Windows.Forms.Button();
-            this.panDataGrid = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvContraints)).BeginInit();
             this.panFilter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbFilter)).BeginInit();
             this.panDataGrid.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFilter)).BeginInit();
             this.SuspendLayout();
             // 
             // lblSearch
@@ -166,6 +167,20 @@
             this.panFilter.Size = new System.Drawing.Size(215, 187);
             this.panFilter.TabIndex = 11;
             // 
+            // panDataGrid
+            // 
+            this.panDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panDataGrid.BackColor = System.Drawing.Color.Gainsboro;
+            this.panDataGrid.Controls.Add(this.dgvContraints);
+            this.panDataGrid.Controls.Add(this.butDropConstraint);
+            this.panDataGrid.Controls.Add(this.butBuildReport);
+            this.panDataGrid.Location = new System.Drawing.Point(12, 228);
+            this.panDataGrid.Name = "panDataGrid";
+            this.panDataGrid.Size = new System.Drawing.Size(984, 489);
+            this.panDataGrid.TabIndex = 12;
+            // 
             // pbFilter
             // 
             this.pbFilter.Image = global::WinFormUI.Properties.Resources.Filter;
@@ -218,20 +233,6 @@
             this.butCleanSearch.UseVisualStyleBackColor = true;
             this.butCleanSearch.Click += new System.EventHandler(this.butCleanSearch_Click);
             // 
-            // panDataGrid
-            // 
-            this.panDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panDataGrid.BackColor = System.Drawing.Color.Gainsboro;
-            this.panDataGrid.Controls.Add(this.dgvContraints);
-            this.panDataGrid.Controls.Add(this.butDropConstraint);
-            this.panDataGrid.Controls.Add(this.butBuildReport);
-            this.panDataGrid.Location = new System.Drawing.Point(12, 228);
-            this.panDataGrid.Name = "panDataGrid";
-            this.panDataGrid.Size = new System.Drawing.Size(984, 489);
-            this.panDataGrid.TabIndex = 12;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
@@ -245,6 +246,7 @@
             this.Controls.Add(this.tbSearch);
             this.Controls.Add(this.lblSearch);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6);
             this.MinimumSize = new System.Drawing.Size(1024, 768);
             this.Name = "MainForm";
@@ -255,8 +257,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvContraints)).EndInit();
             this.panFilter.ResumeLayout(false);
             this.panFilter.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbFilter)).EndInit();
             this.panDataGrid.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbFilter)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

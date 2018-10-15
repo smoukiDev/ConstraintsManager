@@ -30,13 +30,24 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.rvConstraints = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.dsOracleSysUser = new WinFormUI.dsOracleSysUser();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportForm));
             this.ALL_CONSTRAINTSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dsOracleSysUser = new WinFormUI.dsOracleSysUser();
+            this.rvConstraints = new Microsoft.Reporting.WinForms.ReportViewer();
             this.ALL_CONSTRAINTSTableAdapter = new WinFormUI.dsOracleSysUserTableAdapters.ALL_CONSTRAINTSTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.dsOracleSysUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ALL_CONSTRAINTSBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsOracleSysUser)).BeginInit();
             this.SuspendLayout();
+            // 
+            // ALL_CONSTRAINTSBindingSource
+            // 
+            this.ALL_CONSTRAINTSBindingSource.DataMember = "ALL_CONSTRAINTS";
+            this.ALL_CONSTRAINTSBindingSource.DataSource = this.dsOracleSysUser;
+            // 
+            // dsOracleSysUser
+            // 
+            this.dsOracleSysUser.DataSetName = "dsOracleSysUser";
+            this.dsOracleSysUser.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // rvConstraints
             // 
@@ -47,20 +58,11 @@
             this.rvConstraints.LocalReport.ReportEmbeddedResource = "WinFormUI.Reports.AllConstraints.rdlc";
             this.rvConstraints.Location = new System.Drawing.Point(0, 0);
             this.rvConstraints.Name = "rvConstraints";
+            this.rvConstraints.ServerReport.BearerToken = null;
             this.rvConstraints.Size = new System.Drawing.Size(1008, 729);
             this.rvConstraints.TabIndex = 0;
             this.rvConstraints.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.PageWidth;
             this.rvConstraints.ZoomPercent = 50;
-            // 
-            // dsOracleSysUser
-            // 
-            this.dsOracleSysUser.DataSetName = "dsOracleSysUser";
-            this.dsOracleSysUser.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // ALL_CONSTRAINTSBindingSource
-            // 
-            this.ALL_CONSTRAINTSBindingSource.DataMember = "ALL_CONSTRAINTS";
-            this.ALL_CONSTRAINTSBindingSource.DataSource = this.dsOracleSysUser;
             // 
             // ALL_CONSTRAINTSTableAdapter
             // 
@@ -73,6 +75,7 @@
             this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.rvConstraints);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6);
             this.MinimumSize = new System.Drawing.Size(1024, 768);
             this.Name = "ReportForm";
@@ -80,8 +83,8 @@
             this.Text = "Report Manager";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ReportForm_FormClosing);
             this.Load += new System.EventHandler(this.ReportForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dsOracleSysUser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ALL_CONSTRAINTSBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsOracleSysUser)).EndInit();
             this.ResumeLayout(false);
 
         }

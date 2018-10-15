@@ -61,19 +61,29 @@ namespace WinFormUI
         }
         private void butDropConstraint_Click(object sender, EventArgs e)
         {
-            string targetOwner = dgvContraints.SelectedRows[0].Cells[0].Value.ToString();
-            string targetTable = dgvContraints.SelectedRows[0].Cells[1].Value.ToString();
-            string targetContraint = dgvContraints.SelectedRows[0].Cells[2].Value.ToString();
-            MessageBox.Show(targetTable + Environment.NewLine + targetContraint);
-            DialogResult SaveOrNot = MessageBox.Show("Are you sure, you want to drop this constraint?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (SaveOrNot == DialogResult.Yes)
+            try
             {
-                DropConstraint(targetOwner, targetTable, targetContraint);
+                string targetOwner = dgvContraints.SelectedRows[0].Cells[0].Value.ToString();
+                string targetTable = dgvContraints.SelectedRows[0].Cells[1].Value.ToString();
+                string targetContraint = dgvContraints.SelectedRows[0].Cells[2].Value.ToString();
+                DialogResult SaveOrNot = MessageBox.Show("Are you sure, you want to drop this constraint?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (SaveOrNot == DialogResult.Yes)
+                {
+                    DropConstraint(targetOwner, targetTable, targetContraint);
+                }
+                if (SaveOrNot == DialogResult.No)
+                {
+                    string lucidMessage = "Dropping of constraint was discarded.";
+                    MessageBox.Show(lucidMessage, "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            if (SaveOrNot == DialogResult.No)
+            catch(ArgumentOutOfRangeException)
             {
-                MessageBox.Show("Dropping of constraint was discarded.", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string lucidMessage = "Please choose whole line in table to drop an constraint";
+                MessageBox.Show(lucidMessage, "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+                
+
 
         }
         private void butBuildReport_Click(object sender, EventArgs e)
@@ -105,7 +115,8 @@ namespace WinFormUI
 
         private void SelectConstraints(string connectionString, string sql)
         {
-
+            try
+            {
                 using (OracleConnection connection = new OracleConnection(connectionString))
                 {
                     connection.Open();
@@ -117,6 +128,13 @@ namespace WinFormUI
                     }
 
                 }
+            }
+            catch(Exception ex)
+            {
+                string lucidMessage = "Dropping of constraint was aborted." + Environment.NewLine + Environment.NewLine;
+                MessageBox.Show(lucidMessage + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+                
         }
         private void GetAllConstraints()
         {
@@ -144,28 +162,30 @@ namespace WinFormUI
             SelectConstraints(connectionString, sql);
         }
         private void DropConstraint(string owner, string table, string constraintName)
-        {
-            string sqlExpression = $"ALTER TABLE {owner}.{table} DROP CONSTRAINT {constraintName}";
-
-            using (OracleConnection connection = new OracleConnection(connectionString))
+        {            
+            try
             {
-                connection.Open();
-                using (OracleCommand command = new OracleCommand(sqlExpression, connection))
+                string sqlExpression = $"ALTER TABLE {owner}.{table} DROP CONSTRAINT {constraintName}";
+                using (OracleConnection connection = new OracleConnection(connectionString))
                 {
-                    try
+                    connection.Open();
+                    using (OracleCommand command = new OracleCommand(sqlExpression, connection))
                     {
-                        command.ExecuteNonQuery();
-                        MessageBox.Show("Constraint was successfully dropped.", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            command.ExecuteNonQuery();
+                            string lucidMessage = "Constraint was successfully dropped.";
+                            MessageBox.Show(lucidMessage, "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);                           
                     }
-                    catch (Exception EX)
-                    {
-                        MessageBox.Show(EX.Message);
-                    }
+
+
+
                 }
-                    
-
-
             }
+            catch(Exception ex)
+            {
+                string lucidMessage = "Dropping of constraint was aborted." + Environment.NewLine + Environment.NewLine;
+                MessageBox.Show(lucidMessage + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
     }
 }

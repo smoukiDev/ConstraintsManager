@@ -5,10 +5,10 @@
     <Setting Name="OracleSysUser" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;DATA SOURCE=PDBORTW;DBA PRIVILEGE=SYSDBA;PASSWORD=ultraLife31;USER ID=SYS&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;DATA SOURCE=PDBSTD;DBA PRIVILEGE=SYSDBA;PASSWORD=ultraLife31;USER ID=SYS&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;Oracle.ManagedDataAccess.Client&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">DATA SOURCE=PDBORTW;DBA PRIVILEGE=SYSDBA;PASSWORD=ultraLife31;USER ID=SYS</Value>
+      <Value Profile="(Default)">DATA SOURCE=PDBSTD;DBA PRIVILEGE=SYSDBA;PASSWORD=ultraLife31;USER ID=SYS</Value>
     </Setting>
   </Settings>
 </SettingsFile>

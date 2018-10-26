@@ -26,7 +26,7 @@ namespace WinFormUI.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("DATA SOURCE=PDBORTW;DBA PRIVILEGE=SYSDBA;PASSWORD=ultraLife31;USER ID=SYS")]
+        [global::System.Configuration.DefaultSettingValueAttribute("DATA SOURCE=PDBSTD;DBA PRIVILEGE=SYSDBA;PASSWORD=ultraLife31;USER ID=SYS")]
         public string OracleSysUser {
             get {
                 return ((string)(this["OracleSysUser"]));
